@@ -422,7 +422,7 @@
     const q = questions[currentQIndex];
     return (
         <div className="flex flex-col h-screen p-4 overflow-hidden">
-            {/* 進捗バー */}
+            {/* 進捗バー：ここを基準に幅を合わせます */}
             <div className="flex-none w-full max-w-sm mx-auto mb-4">
                 <div className="flex justify-between text-xs font-bold text-gray-400 mb-1 px-1">
                     <span>Q{currentQIndex + 1}</span>
@@ -433,11 +433,11 @@
                 </div>
             </div>
 
-            {/* コンテンツエリア */}
+            {/* コンテンツエリア全体：中央寄せ・幅固定 */}
             <div className="flex-1 flex flex-col justify-start max-w-sm mx-auto w-full gap-y-3">
                 
-                {/* 画像：進捗バーと同じ幅（w-full）に設定 */}
-                <div className="flex-none w-full max-h-[30vh] bg-white/50 rounded-2xl border-4 border-white shadow-md overflow-hidden flex items-center justify-center">
+                {/* 画像：進捗バーと完全に同じ幅（w-full）で表示 */}
+                <div className="flex-none w-full max-h-[25vh] bg-white/50 rounded-2xl border-4 border-white shadow-md overflow-hidden flex items-center justify-center">
                     <SmartImage 
                         src={`q${q.id}.png`} 
                         alt={`Q${q.id}`} 
@@ -452,8 +452,8 @@
                     </h2>
                 </div>
 
-                {/* 選択肢ボタン */}
-                <div className="flex-1 flex flex-col justify-start space-y-2">
+                {/* 選択肢ボタン：余白を詰める */}
+                <div className="flex-1 flex flex-col justify-start gap-y-2">
                     {q.options.map((opt, i) => (
                         <button 
                             key={i} 
