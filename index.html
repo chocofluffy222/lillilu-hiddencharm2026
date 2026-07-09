@@ -381,15 +381,16 @@
                 window.open("https://www.instagram.com/chocofluffy_222/", "_blank");
             };
            
-         if (gameState === 'start') {
+        if (gameState === 'start') {
     return (
-        // min-h-[90vh] を min-h-screenにして画面全体を有効活用しつつ、余白を調整
+        // min-h-[90vh] を min-h-screen にして画面全体を有効活用しつつ、余白を調整
         <div className="flex flex-col items-center justify-start pt-6 pb-8 px-6 text-center animate-fade-in min-h-screen">
             
             {/* ロゴのサイズを少しコンパクトに */}
-           <div className="animate-float mb-4 w-full max-w-xs mx-auto">
-    <img src="logo.png" alt="ロゴ" className="w-full h-auto object-contain filter drop-shadow-xl" />
-　　　　　　　　</div>
+            <div className="animate-float mb-4">
+                <div className="w-24 h-24 mx-auto">
+                    <img src="logo.png" alt="ロゴ" className="w-full h-full object-contain filter drop-shadow-xl" />
+                </div>
             </div>
 
             {/* タイトルの文字サイズを少し抑える */}
@@ -403,13 +404,13 @@
             </div>
             
             {/* 表紙画像の高さを調整 */}
-            <div className="w-full max-w-xs aspect-square bg-white/50 rounded-3xl border-4 border-white shadow-lg mb-6 overflow-hidden flex items-center justify-center relative">
-    <SmartImage 
-        src="cover.png" 
-        alt="表紙" 
-        className="w-full h-full object-cover" 
-    />
-</div>
+            <div className="w-48 h-48 bg-white/50 rounded-3xl border-4 border-white shadow-lg mb-6 overflow-hidden flex items-center justify-center relative">
+                <SmartImage 
+                    src="cover.png" 
+                    alt="表紙" 
+                    className="w-full h-full object-cover" 
+                />
+            </div>
 
             {/* ボタン */}
             <button onClick={initGame} className="w-full max-w-xs bg-gradient-to-r from-pink-400 to-rose-400 text-white text-xl font-bold py-4 rounded-full shadow-xl border-4 border-white btn-bounce">
