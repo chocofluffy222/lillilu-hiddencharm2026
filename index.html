@@ -380,28 +380,27 @@
             const openInstagram = () => {
                 window.open("https://www.instagram.com/chocofluffy_222/", "_blank");
             };
-       
-   if (gameState === 'start') {
+            if (gameState === 'start') {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2 px-4 text-center animate-fade-in bg-dots gap-y-3">
+        <div className="flex flex-col items-center justify-between min-h-[90vh] py-6 px-4 text-center animate-fade-in bg-dots">
             
-            {/* ロゴ：最小限の幅と余白 */}
-            <div className="animate-float w-full max-w-[180px]">
+            {/* ロゴ：少し大きめに */}
+            <div className="animate-float w-full max-w-[280px] mt-2">
                 <img src="logo.png" alt="ロゴ" className="w-full h-auto object-contain drop-shadow-md" />
             </div>
 
-            {/* タイトルと説明文を完全密着 */}
-            <div className="flex flex-col items-center">
-                <h1 className="text-xl font-extrabold text-rose-500 leading-tight" style={{ textShadow: '1px 1px 0 #fff' }}>
+            {/* タイトルと説明文 */}
+            <div className="space-y-2">
+                <h1 className="text-2xl font-extrabold text-rose-500 leading-tight" style={{ textShadow: '1px 1px 0 #fff' }}>
                     ピエロのリルリルと<br/>仲間たち診断
                 </h1>
-                <p className="text-deep-brown font-bold text-[10px] bg-white/50 px-2 py-0.5 mt-1 rounded-full">
+                <p className="text-deep-brown font-bold text-xs bg-white/50 px-3 py-1 rounded-full inline-block">
                     あなたの隠れた魅力はなんだ！？
                 </p>
             </div>
 
-            {/* カバー画像：サイズを少し小さくし余白を消去 */}
-            <div className="w-full max-w-[180px] aspect-square bg-white/60 rounded-2xl border-4 border-white shadow-lg overflow-hidden flex items-center justify-center">
+            {/* カバー画像：2枚目のサイズ感に拡大 */}
+            <div className="w-full max-w-[300px] aspect-square bg-white/60 rounded-3xl border-4 border-white shadow-xl overflow-hidden flex items-center justify-center">
                 <SmartImage 
                     src="cover.png" 
                     alt="表紙" 
@@ -409,16 +408,17 @@
                 />
             </div>
 
-            {/* 診断スタートボタン：ボタン自体の高さを少し控えめに */}
+            {/* 診断スタートボタン：幅を広げて下部に配置 */}
             <button 
                 onClick={initGame} 
-                className="w-full max-w-[240px] bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-sm py-3 rounded-full shadow-lg border-4 border-white"
+                className="w-full max-w-[320px] bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-lg py-4 rounded-full shadow-xl border-4 border-white mb-2"
             >
                 診断スタート！
             </button>
         </div>
     );
 }
+       
           if (gameState === 'quiz') {
                 const q = questions[currentQIndex];
                 return (
