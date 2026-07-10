@@ -460,24 +460,23 @@
 </h2>
                 </div>
 
-               {/* 選択肢ボタン */}
-<div className="flex-1 flex flex-col justify-start gap-y-2 pt-1">
-    {q.options.map((opt, i) => (
-        <button 
-            key={i} 
-            onClick={() => handleAnswer(opt.point)} 
-            className="w-full h-auto bg-white text-deep-brown font-bold py-3 px-4 rounded-xl shadow-sm border-2 border-white active:bg-pink-50 transition-all text-lg leading-snug text-center"
-        >
-            {/* ここで改行コード(\n)を <br /> に変換します */}
-            {opt.text.split('\n').map((line, index) => (
-                <span key={index}>
-                    {line}
-                    {index < opt.text.split('\n').length - 1 && <br />}
-                </span>
-            ))}
-        </button>
-    ))}
-</div>
+                {/* 選択肢ボタン：改行対応 */}
+                <div className="flex-1 flex flex-col justify-start gap-y-2 pt-1">
+                    {q.options.map((opt, i) => (
+                        <button 
+                            key={i} 
+                            onClick={() => handleAnswer(opt.point)} 
+                            // h-autoで高さ可変、break-wordsで強制改行
+                            className="w-full h-auto bg-white text-deep-brown font-bold py-3 px-4 rounded-xl shadow-sm border-2 border-white active:bg-pink-50 transition-all text-lg leading-tight break-words text-center"
+                        >
+                            {opt.text}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
             if (gameState === 'analyzing') {
                 return (
                     <div className="flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
