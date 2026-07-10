@@ -390,9 +390,7 @@ const AnalyzingAnimation = () => {
                 }, 3000);
             };
 
-         
-
-    const shareResult = async (platform) => {
+           const shareResult = async (platform) => {
     const emojiMap = {
         lillilu: "🤡",
         rosie: "🐰",
@@ -407,11 +405,11 @@ const AnalyzingAnimation = () => {
         .sort((a, b) => b[1] - a[1])
         .map(([key, value]) => {
             const percent = Math.round((value / 7) * 100);
+
             return `${emojiMap[key]} ${CHARACTERS[key].nameJp}：${percent}%`;
         })
         .join("\n");
 
-    // Threads用の詳しい結果
     const text = `私のタイプは【${resultChar.nameJp}】でした✨
 
 🌸隠れた魅力
@@ -422,32 +420,18 @@ ${ranking}
 
 #リルリルと仲間たち診断`;
 
-    // OGP画像が設定されている診断ページの固定URL
-    const url = "https://chocofluffy222.github.io/LilLilu-test/";
-
-    let shareUrl = "";
-
-    if (platform === "line") {
-        // LINEは短い文章＋URLだけにする
-        const lineText = `私のタイプは【${resultChar.nameJp}】でした✨
-隠れた魅力は「${resultChar.hiddenCharm}」♡
-
-あなたも診断してみてね！
-${url}`;
-
-        shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(lineText)}`;
-
-    } else if (platform === "threads") {
-        // Threadsは今までどおり詳しい結果を載せる
-        shareUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + "\n" + url)}`;
-
-    } else if (platform === "instagram") {
-        alert("スクリーンショットを撮ってストーリーにシェアしてね！");
-        return;
-    }
-
-    window.open(shareUrl, "_blank");
-};
+    const url = window.location.href; 
+                let shareUrl = "";
+                if (platform === 'line') {
+                    shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text + "\n" + url)}`;
+                } else if (platform === 'threads') {
+                    shareUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + "\n" + url)}`;
+                } else if (platform === 'instagram') {
+                    alert("スクリーンショットを撮ってストーリーにシェアしてね！");
+                    return;
+                }
+                window.open(shareUrl, '_blank');
+            };
             
             const openInstagram = () => {
                 window.open("https://www.instagram.com/chocofluffy_222/", "_blank");
