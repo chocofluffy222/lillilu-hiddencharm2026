@@ -384,28 +384,53 @@ const AnalyzingAnimation = () => {
                 }, 3000);
             };
 
-            const shareResult = (platform) => {
-                const ranking = Object.entries(scores)
+           const shareResult = (platform) => {
+    const emojiMap = {
+        lillilu: "🤡",
+        rosie: "🐰",
+        finn: "🐸",
+        bonbon: "🐻",
+        espie: "🐘",
+        gigi: "🦒",
+        levy: "🦄"
+    };
+
+    const ranking = Object.entries(scores)
         .sort((a, b) => b[1] - a[1])
         .map(([key, value]) => {
             const percent = Math.round((value / 7) * 100);
-            return `${CHARACTERS[key].nameJp} ${percent}%`;
+            return `${emojiMap[key]} ${CHARACTERS[key].nameJp}：${percent}%`;
         })
         .join("\n");
-                
-                const text = `私のタイプは【${resultChar.nameJp}】でした！\n隠れた魅力：${resultChar.hiddenCharm}\n\n#リルリルと仲間たち診断`;
-                const url = window.location.href; 
-                let shareUrl = "";
-                if (platform === 'line') {
-                    shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text + "\n" + url)}`;
-                } else if (platform === 'threads') {
-                    shareUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + "\n" + url)}`;
-                } else if (platform === 'instagram') {
-                    alert("スクリーンショットを撮ってストーリーにシェアしてね！");
-                    return;
-                }
-                window.open(shareUrl, '_blank');
-            };
+
+    const text = `私のタイプは【${resultChar.nameJp}】でした✨
+
+🌸隠れた魅力
+${resultChar.hiddenCharm}
+
+📊あなたの中にいる仲間たち
+${ranking}
+
+#リルリルと仲間たち診断`;
+
+    const url = window.location.href;
+    let shareUrl = "";
+
+    if (platform === "line") {
+        shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(
+            text + "\n\n" + url
+        )}`;
+    } else if (platform === "threads") {
+        shareUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(
+            text + "\n\n" + url
+        )}`;
+    } else if (platform === "instagram") {
+        alert("スクリーンショットを撮ってストーリーにシェアしてね！");
+        return;
+    }
+
+    window.open(shareUrl, "_blank");
+};
 
             const openInstagram = () => {
                 window.open("https://www.instagram.com/chocofluffy_222/", "_blank");
