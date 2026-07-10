@@ -445,20 +445,20 @@
                     />
                 </div>
                 
-                {/* 質問文 */}
-                <div className="flex-none bg-purple-50 border-2 border-purple-100 rounded-xl p-3">
-                    <h2 className="text-base font-bold text-center text-deep-brown leading-snug whitespace-pre-wrap">
+              {/* 質問文：text-lg（大きく） */}
+                <div className="flex-none bg-purple-50 border-2 border-purple-100 rounded-2xl p-4">
+                    <h2 className="text-lg font-bold text-center text-deep-brown leading-snug whitespace-pre-wrap">
                         {q.text}
                     </h2>
                 </div>
 
-                {/* 選択肢ボタン：余白を詰める */}
-                <div className="flex-1 flex flex-col justify-start gap-y-1.5">
+                {/* 選択肢ボタン：py-4（高さUP） */}
+                <div className="flex-1 flex flex-col justify-center gap-y-3">
                     {q.options.map((opt, i) => (
                         <button 
                             key={i} 
                             onClick={() => handleAnswer(opt.point)} 
-                            className="w-full bg-white text-deep-brown font-bold py-2.5 px-4 rounded-xl shadow-sm border-2 border-white active:bg-pink-50 transition-all text-sm"
+                            className="w-full bg-white text-deep-brown font-bold py-4 px-4 rounded-xl shadow-sm border-2 border-white active:bg-pink-50 transition-all text-base"
                         >
                             {opt.text}
                         </button>
@@ -468,7 +468,6 @@
         </div>
     );
 }
-          
             if (gameState === 'analyzing') {
                 return (
                     <div className="flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
