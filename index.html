@@ -495,39 +495,6 @@ const calculateResult = (finalScores) => {
         setGameState("result");
     }, 3000);
 };
-const shareResult = async (platform) => {
-        });
-
-        setPieData(data);
-        setGameState("result");
-    }, 3000);
-};
-                    setResultChar(CHARACTERS[winnerKey]);
-                    
-                    const percentages = calculatePercentages(finalScores);
-
-　　　　　　　　　const data = Object.keys(CHARACTERS).map(key => {
-    　　　　　　const percentageItem = percentages.find(
-       　　　 item => item.key === key
-    　　　　　);
-
-    　　　return {
-        id: key,
-        name: CHARACTERS[key].nameJp,
-
-        // 0点でも円グラフには少しだけ表示
-        value: finalScores[key] || 0.1,
-
-        // 表示用の正しい割合
-        percent: percentageItem ? percentageItem.percent : 0,
-
-        color: CHARACTERS[key].color
-    　　　};
-　　　　　　});
-                    setPieData(data);
-                    setGameState('result');
-                }, 3000);
-            };
 
            const shareResult = async (platform) => {
     const emojiMap = {
