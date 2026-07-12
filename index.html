@@ -420,35 +420,37 @@ const calculatePercentages = (scoreData) => {
             const calculateResult = (finalScores) => {
                 setGameState('analyzing');
                 setTimeout(() => {
-                   const priorityOrder = [
-    "lillilu",
-    "rosie",
-    "finn",
-    "bonbon",
-    "espie",
-    "gigi",
-    "levy"
-];
+                   let winnerKey = PRIORITY_ORDER[0];
 
-let maxScore = -1;
-let winnerKey = priorityOrder[0];
+PRIORITY_ORDER.forEach(key => {
+   　　　　　　　　　　 "lillilu",
+   　　　　　　　　　　 "rosie",
+    　　　　　　　　　　"finn",
+   　　　　　　　　　　 "bonbon",
+    　　　　　　　　　　"espie",
+    　　　　　　　　　　"gigi",
+    　　　　　　　　　　"levy"
+　　　　　　　　　];
 
-priorityOrder.forEach(key => {
-    if (finalScores[key] > maxScore) {
-        maxScore = finalScores[key];
-        winnerKey = key;
-    }
-});
+　　　　　　　　　let maxScore = -1;
+　　　　　　　　　let winnerKey = priorityOrder[0];
+
+　　　　　　　　　　priorityOrder.forEach(key => {
+    　　　　　　if (finalScores[key] > maxScore) {
+        　　　　maxScore = finalScores[key];
+        　　　　winnerKey = key;
+   　　　　　　 }
+　　　　　　　　});
                     setResultChar(CHARACTERS[winnerKey]);
                     
                     const percentages = calculatePercentages(finalScores);
 
-const data = Object.keys(CHARACTERS).map(key => {
-    const percentageItem = percentages.find(
-        item => item.key === key
-    );
+　　　　　　　　　const data = Object.keys(CHARACTERS).map(key => {
+    　　　　　　const percentageItem = percentages.find(
+       　　　 item => item.key === key
+    　　　　　);
 
-    return {
+    　　　return {
         id: key,
         name: CHARACTERS[key].nameJp,
 
@@ -459,8 +461,8 @@ const data = Object.keys(CHARACTERS).map(key => {
         percent: percentageItem ? percentageItem.percent : 0,
 
         color: CHARACTERS[key].color
-    };
-});
+    　　　};
+　　　　　　});
                     setPieData(data);
                     setGameState('result');
                 }, 3000);
@@ -484,7 +486,10 @@ const ranking = percentageData
             return b.value - a.value;
         }
 
-        return a.index - b.index;
+        return (
+    PRIORITY_ORDER.indexOf(a.key) -
+    PRIORITY_ORDER.indexOf(b.key)
+);
     })
     .map(({ key, percent }) => {
         return `${emojiMap[key]} ${CHARACTERS[key].nameJp}：${percent}%`;
