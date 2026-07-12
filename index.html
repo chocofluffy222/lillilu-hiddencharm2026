@@ -400,15 +400,67 @@ const AnalyzingAnimation = () => {
         gigi: "🦒",
         levy: "🦄"
     };
+const totalScore = Object.values(scores).reduce(
+    (sum, value) => sum + value,
+    0
+);
 
-    const ranking = Object.entries(scores)
-        .sort((a, b) => b[1] - a[1])
-        .map(([key, value]) => {
-            const percent = Math.round((value / 7) * 100);
+const percentageData = Object.entries(scores).map(
+    ([key, value], index) => {
+        const exactPercent =
+            totalScore > 0 ? (value / totalScore) * 100 : 0;
 
-            return `${emojiMap[key]} ${CHARACTERS[key].nameJp}：${percent}%`;
-        })
-        .join("\n");
+        const basePercent = Math.floor(exactPercent);
+
+        return {
+            key,
+            value,
+            index,
+            percent: basePercent,
+            remainder: exactPercent - basePercent
+        };
+    }
+);
+
+let remainingPercent =
+    100 -
+    percentageData.reduce(
+        (sum, item) => sum + item.percent,
+        0
+    );
+
+percentageData
+    .sort((a, b) => {
+        if (b.remainder !== a.remainder) {
+            return b.remainder - a.remainder;
+        }
+
+        if (b.value !== a.value) {
+            return b.value - a.value;
+        }
+
+        return a.index - b.index;
+    })
+    .forEach((item) => {
+        if (remainingPercent > 0) {
+            item.percent += 1;
+            remainingPercent -= 1;
+        }
+    });
+
+const ranking = percentageData
+    .sort((a, b) => {
+        if (b.value !== a.value) {
+            return b.value - a.value;
+        }
+
+        return a.index - b.index;
+    })
+    .map(({ key, percent }) => {
+        return `${emojiMap[key]} ${CHARACTERS[key].nameJp}：${percent}%`;
+    })
+    .join("\n");
+    
 
     const text = `私のタイプは【${resultChar.nameJp}】でした✨
 
